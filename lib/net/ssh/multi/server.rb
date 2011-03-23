@@ -187,6 +187,8 @@ module Net; module SSH; module Multi
 
         session[:server] = self
         session
+      rescue ::Timeout::Error => error
+        raise Net::SSH::ConnectionTimeout.new("#{error.message} for #{host}")
       rescue Net::SSH::AuthenticationFailed => error
         raise Net::SSH::AuthenticationFailed.new("#{error.message}@#{host}")
       end
