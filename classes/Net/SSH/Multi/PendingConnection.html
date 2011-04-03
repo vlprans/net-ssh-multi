@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Net::SSH::Multi::PendingConnection [Control multiple Net::SSH connections via a single interface.]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Net::SSH::Multi::PendingConnection
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/lib/net/ssh/multi/pending_connection_rb.html">lib/net/ssh/multi/pending_connection.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Object</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            A <a href="PendingConnection.html">PendingConnection</a> instance mimics a
+            Net::SSH::Connection::Session instance, without actually being an open
+            connection to a server. It is used by <a
+            href="Session.html">Net::SSH::Multi::Session</a> when a concurrent
+            connection limit is in effect, so that a server can hang on to a
+            &#8220;connection&#8221; that isn&#8217;t really a connection.
+            </p>
+            <p>
+            Any requests against this connection (like <a
+            href="PendingConnection.html#M000038">open_channel</a> or <a
+            href="PendingConnection.html#M000039">send_global_request</a>) are not
+            actually sent, but are added to a list of recordings. When the real session
+            is opened and replaces this pending connection, all recorded actions will
+            be replayed against that session.
+            </p>
+            <p>
+            You&#8217;ll never need to initialize one of these directly, and (if all
+            goes well!) should never even notice that one of these is in use. <a
+            href="Session.html">Net::SSH::Multi::Session</a> will instantiate these as
+            needed, and only when there is a concurrent connection limit.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000036">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000040">busy?</a></li>
+              <li><a href="#M000042">channels</a></li>
+              <li><a href="#M000041">close</a></li>
+              <li><a href="#M000045">listeners</a></li>
+              <li><a href="#M000038">open_channel</a></li>
+              <li><a href="#M000044">postprocess</a></li>
+              <li><a href="#M000043">preprocess</a></li>
+              <li><a href="#M000037">replace_with</a></li>
+              <li><a href="#M000039">send_global_request</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>server</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'>
+                      
+                      The <a href="Server.html">Net::SSH::Multi::Server</a> object that
+                      &#8220;owns&#8221; this pending connection.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000036'>
+                <a name='M000036'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(server)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Instantiates a new pending connection for the given <a
+                  href="Server.html">Net::SSH::Multi::Server</a> object.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000036-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000036-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 52</span>&#x000A;52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">server</span>)&#x000A;53:       <span class="ruby-ivar">@server</span> = <span class="ruby-identifier">server</span>&#x000A;54:       <span class="ruby-ivar">@recordings</span> = []&#x000A;55:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000040'>
+                <a name='M000040'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>busy?</span>
+                  <span class='arguments'>(include_invisible=false)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Always returns <tt>true</tt>, so that the pending connection looks active
+                  until it can be truly opened and replaced with a real connection.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000040-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000040-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 82</span>&#x000A;82:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">busy?</span>(<span class="ruby-identifier">include_invisible</span>=<span class="ruby-keyword kw">false</span>)&#x000A;83:       <span class="ruby-keyword kw">true</span>&#x000A;84:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000042'>
+                <a name='M000042'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>channels</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns an empty array, since a pending connection cannot have any real
+                  channels.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000042-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000042-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 92</span>&#x000A;92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">channels</span>&#x000A;93:       []&#x000A;94:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000041'>
+                <a name='M000041'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>close</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Does nothing, except to make a pending connection quack like a real
+                  connection.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000041-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000041-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 87</span>&#x000A;87:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">close</span>&#x000A;88:       <span class="ruby-keyword kw">self</span>&#x000A;89:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000045'>
+                <a name='M000045'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>listeners</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns an empty hash, since a pending connection has no real listeners.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000045-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000045-source'>     <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 107</span>&#x000A;107:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">listeners</span>&#x000A;108:       {}&#x000A;109:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000038'>
+                <a name='M000038'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>open_channel</span>
+                  <span class='arguments'>(type=&quot;session&quot;, *extras, &amp;on_confirm)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Records that a channel open request has been made, and returns a new <a
+                  href="ChannelProxy.html">Net::SSH::Multi::ChannelProxy</a> object to
+                  represent the (as yet unopened) channel.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000038-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000038-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 67</span>&#x000A;67:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_channel</span>(<span class="ruby-identifier">type</span>=<span class="ruby-value str">&quot;session&quot;</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">extras</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">on_confirm</span>)&#x000A;68:       <span class="ruby-identifier">channel</span> = <span class="ruby-constant">ChannelProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">on_confirm</span>)&#x000A;69:       <span class="ruby-ivar">@recordings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ChannelOpenRecording</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">extras</span>, <span class="ruby-identifier">channel</span>)&#x000A;70:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">channel</span>&#x000A;71:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000044'>
+                <a name='M000044'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>postprocess</span>
+                  <span class='arguments'>(readers, writers)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns <tt>true</tt>, and does nothing else.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000044-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000044-source'>     <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 102</span>&#x000A;102:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">postprocess</span>(<span class="ruby-identifier">readers</span>, <span class="ruby-identifier">writers</span>)&#x000A;103:       <span class="ruby-keyword kw">true</span>&#x000A;104:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000043'>
+                <a name='M000043'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>preprocess</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns <tt>true</tt>, and does nothing else.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000043-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000043-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 97</span>&#x000A;97:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preprocess</span>&#x000A;98:       <span class="ruby-keyword kw">true</span>&#x000A;99:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000037'>
+                <a name='M000037'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>replace_with</span>
+                  <span class='arguments'>(session)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Instructs the pending session to replay all of its recordings against the
+                  given <tt>session</tt>, and to then replace itself with the given session.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000037-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000037-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 59</span>&#x000A;59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace_with</span>(<span class="ruby-identifier">session</span>)&#x000A;60:       <span class="ruby-ivar">@recordings</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">recording</span><span class="ruby-operator">|</span> <span class="ruby-identifier">recording</span>.<span class="ruby-identifier">replay_on</span>(<span class="ruby-identifier">session</span>) }&#x000A;61:       <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">replace_session</span>(<span class="ruby-identifier">session</span>)&#x000A;62:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000039'>
+                <a name='M000039'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>send_global_request</span>
+                  <span class='arguments'>(type, *extra, &amp;callback)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Records that a global request has been made. The request is not actually
+                  sent, and won&#8217;t be until <a
+                  href="PendingConnection.html#M000037">replace_with</a> is called.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000039-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000039-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/pending_connection.rb, line 75</span>&#x000A;75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_global_request</span>(<span class="ruby-identifier">type</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">extra</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">callback</span>)&#x000A;76:       <span class="ruby-ivar">@recordings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">SendGlobalRequestRecording</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">extra</span>, <span class="ruby-identifier">callback</span>)&#x000A;77:       <span class="ruby-keyword kw">self</span>&#x000A;78:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

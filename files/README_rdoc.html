@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README.rdoc [Control multiple Net::SSH connections via a single interface.]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>README.rdoc</div>
+        <div class='paths'>
+          README.rdoc
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>2011-04-03 16:38:48 -0400</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1><a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a></h1>
+            <ul>
+            <li><a
+            href="http://net-ssh.rubyforge.org/multi">net-ssh.rubyforge.org/multi</a>
+            
+            </li>
+            </ul>
+            <h2>DESCRIPTION:</h2>
+            <p>
+            <a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a> is a library
+            for controlling multiple <a href="../classes/Net/SSH.html">Net::SSH</a>
+            connections via a single interface. It exposes an API similar to that of
+            Net::SSH::Connection::Session and Net::SSH::Connection::Channel, making it
+            simpler to adapt programs designed for single connections to be used with
+            multiple connections.
+            </p>
+            <p>
+            This library is particularly useful for automating repetitive tasks that
+            must be performed on multiple machines. It executes the commands in
+            parallel, and allows commands to be executed on subsets of servers (defined
+            by groups).
+            </p>
+            <h2>FEATURES:</h2>
+            <ul>
+            <li>Easily manage multiple connections
+            
+            </li>
+            <li>Open channels, spawn processes, etc. on multiple connections in parallel
+            
+            </li>
+            <li>Transparently limit concurrent connections when dealing with large numbers
+            of servers (Net::SSH::Multi::Session#concurrent_connections)
+            
+            </li>
+            <li>Specify a default gateway machine through which connections should be
+            tunneled, or even specify a different gateway machine for each server
+            
+            </li>
+            </ul>
+            <h2>SYNOPSIS:</h2>
+            <p>
+            In a nutshell:
+            </p>
+            <pre>require 'net/ssh/multi'&#x000A;&#x000A;Net::SSH::Multi.start do |session|&#x000A;  # access servers via a gateway&#x000A;  session.via 'gateway', 'gateway-user'&#x000A;&#x000A;  # define the servers we want to use&#x000A;  session.use 'user1@host1'&#x000A;  session.use 'user2@host2'&#x000A;&#x000A;  # define servers in groups for more granular access&#x000A;  session.group :app do&#x000A;    session.use 'user@app1'&#x000A;    session.use 'user@app2'&#x000A;  end&#x000A;&#x000A;  # execute commands on all servers&#x000A;  session.exec &quot;uptime&quot;&#x000A;&#x000A;  # execute commands on a subset of servers&#x000A;  session.with(:app).exec &quot;hostname&quot;&#x000A;&#x000A;  # run the aggregated event loop&#x000A;  session.loop&#x000A;end</pre>
+            <p>
+            See <a
+            href="../classes/Net/SSH/Multi/Session.html">Net::SSH::Multi::Session</a>
+            for more documentation.
+            </p>
+            <h2>REQUIREMENTS:</h2>
+            <ul>
+            <li>net-ssh (version 2)
+            
+            </li>
+            <li>net-ssh-gateway
+            
+            </li>
+            </ul>
+            <p>
+            If you want to run the tests or use any of the Rake tasks, you&#8217;ll
+            need:
+            </p>
+            <ul>
+            <li>Echoe (for the Rakefile)
+            
+            </li>
+            <li>Mocha (for the tests)
+            
+            </li>
+            </ul>
+            <h2>INSTALL:</h2>
+            <ul>
+            <li>gem install net-ssh-multi (might need sudo privileges)
+            
+            </li>
+            </ul>
+            <h2>LICENSE:</h2>
+            <p>
+            (The MIT License)
+            </p>
+            <p>
+            Copyright &#169; 2008 Jamis Buck <jamis@37signals.com>
+            </p>
+            <p>
+            Permission is hereby granted, free of charge, to any person obtaining a
+            copy of this software and associated documentation files (the
+            &#8216;Software&#8217;), to deal in the Software without restriction,
+            including without limitation the rights to use, copy, modify, merge,
+            publish, distribute, sublicense, and/or sell copies of the Software, and to
+            permit persons to whom the Software is furnished to do so, subject to the
+            following conditions:
+            </p>
+            <p>
+            The above copyright notice and this permission notice shall be included in
+            all copies or substantial portions of the Software.
+            </p>
+            <p>
+            THE SOFTWARE IS PROVIDED &#8216;AS IS&#8217;, WITHOUT WARRANTY OF ANY KIND,
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+            NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+            DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+            OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+            USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
