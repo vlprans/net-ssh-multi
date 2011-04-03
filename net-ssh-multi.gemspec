@@ -35,7 +35,6 @@
   # = MANIFEST =
   s.files = %w(
   CHANGELOG.rdoc
-  Manifest
   README.rdoc
   Rakefile
   lib/net/ssh/multi.rb
@@ -49,7 +48,6 @@
   lib/net/ssh/multi/session_actions.rb
   lib/net/ssh/multi/subsession.rb
   lib/net/ssh/multi/version.rb
-  setup.rb
   test/channel_test.rb
   test/common.rb
   test/multi_test.rb
