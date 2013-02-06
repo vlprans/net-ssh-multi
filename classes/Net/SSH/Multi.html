@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Net::SSH::Multi [Control multiple Net::SSH connections via a single interface.]</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <title>Net::SSH::Multi</title>
+    <meta content='text/html; charset=US-ASCII' http-equiv='Content-Type'>
+    <link href='../../../css/style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -26,119 +26,126 @@
     <div class='class' id='wrapper'>
       <div class='header'>
         <h1 class='name'>
-          <span class='type'>Module</span>
+          <span class='type'>module</span>
           Net::SSH::Multi
         </h1>
         <ol class='paths'>
           <li>
-            <a href="../../../files/lib/net/ssh/multi/channel_rb.html">lib/net/ssh/multi/channel.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/channel_rb.html">lib/net/ssh/multi/channel.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/channel_proxy_rb.html">lib/net/ssh/multi/channel_proxy.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/channel_proxy_rb.html">lib/net/ssh/multi/channel_proxy.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/dynamic_server_rb.html">lib/net/ssh/multi/dynamic_server.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/dynamic_server_rb.html">lib/net/ssh/multi/dynamic_server.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/pending_connection_rb.html">lib/net/ssh/multi/pending_connection.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/pending_connection_rb.html">lib/net/ssh/multi/pending_connection.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/server_rb.html">lib/net/ssh/multi/server.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/server_rb.html">lib/net/ssh/multi/server.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/server_list_rb.html">lib/net/ssh/multi/server_list.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/server_list_rb.html">lib/net/ssh/multi/server_list.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/session_actions_rb.html">lib/net/ssh/multi/session_actions.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/session_rb.html">lib/net/ssh/multi/session.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/session_rb.html">lib/net/ssh/multi/session.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/session_actions_rb.html">lib/net/ssh/multi/session_actions.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/subsession_rb.html">lib/net/ssh/multi/subsession.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/subsession_rb.html">lib/net/ssh/multi/subsession.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi/version_rb.html">lib/net/ssh/multi/version.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi/version_rb.html">lib/net/ssh/multi/version.rb</a>
           </li>
           <li class='other'>
-            <a href="../../../files/lib/net/ssh/multi_rb.html">lib/net/ssh/multi.rb</a>
+            <a target="docwin" href="../../../files/lib/net/ssh/multi_rb.html">lib/net/ssh/multi.rb</a>
           </li>
           <li>
             <a class='show' href='#' onclick='this.parentNode.parentNode.className += " expanded"; this.parentNode.removeChild(this); return false'>show all</a>
           </li>
         </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a target="docwin" href="../SSH.html">SSH</a></strong>
+        </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <p>
-            <a href="Multi.html">Net::SSH::Multi</a> is a library for controlling
+            
+            <p><a href="Multi.html">Net::SSH::Multi</a> is a library for controlling
             multiple <a href="../SSH.html">Net::SSH</a> connections via a single
             interface. It exposes an API similar to that of
             Net::SSH::Connection::Session and Net::SSH::Connection::Channel, making it
             simpler to adapt programs designed for single connections to be used with
-            multiple connections.
-            </p>
-            <p>
-            This library is particularly useful for automating repetitive tasks that
+            multiple connections.</p>
+            
+            <p>This library is particularly useful for automating repetitive tasks that
             must be performed on multiple machines. It executes the commands in
             parallel, and allows commands to be executed on subsets of servers (defined
-            by groups).
-            </p>
-            <pre>require 'net/ssh/multi'&#x000A;&#x000A;Net::SSH::Multi.start do |session|&#x000A;  # access servers via a gateway&#x000A;  session.via 'gateway', 'gateway-user'&#x000A;&#x000A;  # define the servers we want to use&#x000A;  session.use 'user1@host1'&#x000A;  session.use 'user2@host2'&#x000A;&#x000A;  # define servers in groups for more granular access&#x000A;  session.group :app do&#x000A;    session.use 'user@app1'&#x000A;    session.use 'user@app2'&#x000A;  end&#x000A;&#x000A;  # execute commands on all servers&#x000A;  session.exec &quot;uptime&quot;&#x000A;&#x000A;  # execute commands on a subset of servers&#x000A;  session.with(:app).exec &quot;hostname&quot;&#x000A;&#x000A;  # run the aggregated event loop&#x000A;  session.loop&#x000A;end</pre>
-            <p>
-            See <a href="Multi/Session.html">Net::SSH::Multi::Session</a> for more
-            documentation.
-            </p>
+            by groups).</p>
+            
+            <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'net/ssh/multi'</span>&#x000A;&#x000A;<span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">session</span><span class="ruby-operator">|</span>&#x000A;  <span class="ruby-comment"># access servers via a gateway</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">via</span> <span class="ruby-string">'gateway'</span>, <span class="ruby-string">'gateway-user'</span>&#x000A;&#x000A;  <span class="ruby-comment"># define the servers we want to use</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user1@host1'</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user2@host2'</span>&#x000A;&#x000A;  <span class="ruby-comment"># define servers in groups for more granular access</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">group</span> :<span class="ruby-identifier">app</span> <span class="ruby-keyword">do</span>&#x000A;    <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user@app1'</span>&#x000A;    <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user@app2'</span>&#x000A;  <span class="ruby-keyword">end</span>&#x000A;&#x000A;  <span class="ruby-comment"># execute commands on all servers</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">exec</span> <span class="ruby-string">&quot;uptime&quot;</span>&#x000A;&#x000A;  <span class="ruby-comment"># execute commands on a subset of servers</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">with</span>(:<span class="ruby-identifier">app</span>).<span class="ruby-identifier">exec</span> <span class="ruby-string">&quot;hostname&quot;</span>&#x000A;&#x000A;  <span class="ruby-comment"># run the aggregated event loop</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">loop</span>&#x000A;<span class="ruby-keyword">end</span></pre>
+            
+            <p>See <a href="Multi/Session.html">Net::SSH::Multi::Session</a> for more
+            documentation.</p>
           </div>
           <div id='method-list'>
             <h2>Methods</h2>
-            <h3>public class</h3>
+            <h3>Public Class</h3>
             <ol>
-              <li><a href="#M000001">start</a></li>
+              <li><a target="docwin" href="#method-c-start">start</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+          </div>
+          <div id='class-list'>
+            <h2>Classes and Modules</h2>
+            <ol>
+              <li><a target="docwin" href="Multi/SessionActions.html">Net::SSH::Multi::SessionActions</a></li>
+              <li><a target="docwin" href="Multi/Channel.html">Net::SSH::Multi::Channel</a></li>
+              <li><a target="docwin" href="Multi/ChannelProxy.html">Net::SSH::Multi::ChannelProxy</a></li>
+              <li><a target="docwin" href="Multi/DynamicServer.html">Net::SSH::Multi::DynamicServer</a></li>
+              <li><a target="docwin" href="Multi/PendingConnection.html">Net::SSH::Multi::PendingConnection</a></li>
+              <li><a target="docwin" href="Multi/Server.html">Net::SSH::Multi::Server</a></li>
+              <li><a target="docwin" href="Multi/ServerList.html">Net::SSH::Multi::ServerList</a></li>
+              <li><a target="docwin" href="Multi/Session.html">Net::SSH::Multi::Session</a></li>
+              <li><a target="docwin" href="Multi/Subsession.html">Net::SSH::Multi::Subsession</a></li>
+              <li><a target="docwin" href="Multi/Version.html">Net::SSH::Multi::Version</a></li>
             </ol>
           </div>
           <div id='section'>
-            <div id='class-list'>
-              <h2>Classes and Modules</h2>
-              Module <a href="Multi/SessionActions.html" class="link">Net::SSH::Multi::SessionActions</a><br />
-              Class <a href="Multi/Channel.html" class="link">Net::SSH::Multi::Channel</a><br />
-              Class <a href="Multi/ChannelProxy.html" class="link">Net::SSH::Multi::ChannelProxy</a><br />
-              Class <a href="Multi/DynamicServer.html" class="link">Net::SSH::Multi::DynamicServer</a><br />
-              Class <a href="Multi/PendingConnection.html" class="link">Net::SSH::Multi::PendingConnection</a><br />
-              Class <a href="Multi/Server.html" class="link">Net::SSH::Multi::Server</a><br />
-              Class <a href="Multi/ServerList.html" class="link">Net::SSH::Multi::ServerList</a><br />
-              Class <a href="Multi/Session.html" class="link">Net::SSH::Multi::Session</a><br />
-              Class <a href="Multi/Subsession.html" class="link">Net::SSH::Multi::Subsession</a><br />
-              Class <a href="Multi/Version.html" class="link">Net::SSH::Multi::Version</a><br />
-            </div>
             <div id='methods'>
-              <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000001'>
-                <a name='M000001'>      </a>
+              <h2>Public Class methods</h2>
+              <div class='method public-class' id='method-method-c-start'>
+                <a name='method-c-start'></a>
                 <div class='synopsis'>
                   <span class='name'>start</span>
-                  <span class='arguments'>(options={}) {|session| ...}</span>
+                  <span class='arguments'>(options={})</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  This is a convenience method for instantiating a new <a
+                  
+                  <p>This is a convenience method for instantiating a new <a
                   href="Multi/Session.html">Net::SSH::Multi::Session</a>. If a block is
                   given, the session will be yielded to the block automatically closed (see
-                  <a href="Multi/Session.html#M000074">Net::SSH::Multi::Session#close</a>)
-                  when the block finishes. Otherwise, the new session will be returned.
-                  </p>
-                  <pre>Net::SSH::Multi.start do |session|&#x000A;  # ...&#x000A;end&#x000A;&#x000A;session = Net::SSH::Multi.start&#x000A;# ...&#x000A;session.close</pre>
-                  <p>
-                  Any options are passed directly to <a
-                  href="Multi/Session.html#M000066">Net::SSH::Multi::Session.new</a> (q.v.).
-                  </p>
+                  <a
+                  href="Multi/Session.html#method-i-close">Net::SSH::Multi::Session#close</a>)
+                  when the block finishes. Otherwise, the new session will be returned.</p>
+                  
+                  <pre class="ruby"><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">session</span><span class="ruby-operator">|</span>&#x000A;  <span class="ruby-comment"># ...</span>&#x000A;<span class="ruby-keyword">end</span>&#x000A;&#x000A;<span class="ruby-identifier">session</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span>.<span class="ruby-identifier">start</span>&#x000A;<span class="ruby-comment"># ...</span>&#x000A;<span class="ruby-identifier">session</span>.<span class="ruby-identifier">close</span></pre>
+                  
+                  <p>Any options are passed directly to <a
+                  href="Multi/Session.html#method-c-new">Net::SSH::Multi::Session.new</a>
+                  (q.v.).</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-c-start-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000001-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi.rb, line 57</span>&#x000A;57:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">options</span>={})&#x000A;58:       <span class="ruby-identifier">session</span> = <span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)&#x000A;59: &#x000A;60:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;61:         <span class="ruby-keyword kw">begin</span>&#x000A;62:           <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">session</span>&#x000A;63:           <span class="ruby-identifier">session</span>.<span class="ruby-identifier">loop</span>&#x000A;64:           <span class="ruby-identifier">session</span>.<span class="ruby-identifier">close</span>&#x000A;65:         <span class="ruby-keyword kw">end</span>&#x000A;66:       <span class="ruby-keyword kw">else</span>&#x000A;67:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">session</span>&#x000A;68:       <span class="ruby-keyword kw">end</span>&#x000A;69:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-c-start-source'><span class="ruby-comment"># File lib/net/ssh/multi.rb, line 57</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">options</span>={})&#x000A;  <span class="ruby-identifier">session</span> = <span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)&#x000A;&#x000A;  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;    <span class="ruby-keyword">begin</span>&#x000A;      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">session</span>&#x000A;      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">loop</span>&#x000A;      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">close</span>&#x000A;    <span class="ruby-keyword">end</span>&#x000A;  <span class="ruby-keyword">else</span>&#x000A;    <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>&#x000A;  <span class="ruby-keyword">end</span>&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
             </div>
@@ -148,7 +155,7 @@
       <div id='footer-push'></div>
     </div>
     <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+      <a target="docwin" href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
     </div>
   </body>
 </html>

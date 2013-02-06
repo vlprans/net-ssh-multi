@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>File: README.rdoc [Control multiple Net::SSH connections via a single interface.]</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <title>README.rdoc</title>
+    <meta content='text/html; charset=US-ASCII' http-equiv='Content-Type'>
+    <link href='../css/style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -25,132 +25,140 @@
   <body class='page'>
     <div class='file' id='wrapper'>
       <div class='header'>
-        <div class='name'>README.rdoc</div>
+        <h1 class='name'>README.rdoc</h1>
         <div class='paths'>
           README.rdoc
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2011-04-03 16:38:48 -0400</span>
+          <span class='datetime'>2013-02-06 08:04:30 -0800</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <h1><a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a></h1>
-            <ul>
-            <li><a
-            href="http://net-ssh.rubyforge.org/multi">net-ssh.rubyforge.org/multi</a>
             
-            </li>
-            </ul>
-            <h2>DESCRIPTION:</h2>
-            <p>
-            <a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a> is a library
+            <h1 id="label-Net%3A%3ASSH%3A%3AMulti"><a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a></h1>
+            <ul><li>
+            <p>Docs: <a
+            href="http://net-ssh.github.com/net-ssh-multi">net-ssh.github.com/net-ssh-multi</a></p>
+            </li><li>
+            <p>Issues: <a
+            href="https://github.com/net-ssh/net-ssh-multi/issues">github.com/net-ssh/net-ssh-multi/issues</a></p>
+            </li><li>
+            <p>Codes: <a
+            href="https://github.com/net-ssh/net-ssh-multi">github.com/net-ssh/net-ssh-multi</a></p>
+            </li><li>
+            <p>Email: net-ssh@solutious.com</p>
+            </li></ul>
+            
+            <p><em>As of v1.1.1, all gem releases are signed. See INSTALL.</em></p>
+            
+            <h2 id="label-DESCRIPTION%3A">DESCRIPTION:</h2>
+            
+            <p><a href="../classes/Net/SSH/Multi.html">Net::SSH::Multi</a> is a library
             for controlling multiple <a href="../classes/Net/SSH.html">Net::SSH</a>
             connections via a single interface. It exposes an API similar to that of
             Net::SSH::Connection::Session and Net::SSH::Connection::Channel, making it
             simpler to adapt programs designed for single connections to be used with
-            multiple connections.
-            </p>
-            <p>
-            This library is particularly useful for automating repetitive tasks that
+            multiple connections.</p>
+            
+            <p>This library is particularly useful for automating repetitive tasks that
             must be performed on multiple machines. It executes the commands in
             parallel, and allows commands to be executed on subsets of servers (defined
-            by groups).
-            </p>
-            <h2>FEATURES:</h2>
-            <ul>
-            <li>Easily manage multiple connections
+            by groups).</p>
             
-            </li>
-            <li>Open channels, spawn processes, etc. on multiple connections in parallel
+            <h2 id="label-FEATURES%3A">FEATURES:</h2>
+            <ul><li>
+            <p>Easily manage multiple connections</p>
+            </li><li>
+            <p>Open channels, spawn processes, etc. on multiple connections in parallel</p>
+            </li><li>
+            <p>Transparently limit concurrent connections when dealing with large numbers
+            of servers (<a
+            href="../classes/Net/SSH/Multi/Session.html#attribute-i-concurrent_connections">Net::SSH::Multi::Session#concurrent_connections</a>)</p>
+            </li><li>
+            <p>Specify a default gateway machine through which connections should be
+            tunneled, or even specify a different gateway machine for each server</p>
+            </li></ul>
             
-            </li>
-            <li>Transparently limit concurrent connections when dealing with large numbers
-            of servers (Net::SSH::Multi::Session#concurrent_connections)
+            <h2 id="label-SYNOPSIS%3A">SYNOPSIS:</h2>
             
-            </li>
-            <li>Specify a default gateway machine through which connections should be
-            tunneled, or even specify a different gateway machine for each server
+            <p>In a nutshell:</p>
             
-            </li>
-            </ul>
-            <h2>SYNOPSIS:</h2>
-            <p>
-            In a nutshell:
-            </p>
-            <pre>require 'net/ssh/multi'&#x000A;&#x000A;Net::SSH::Multi.start do |session|&#x000A;  # access servers via a gateway&#x000A;  session.via 'gateway', 'gateway-user'&#x000A;&#x000A;  # define the servers we want to use&#x000A;  session.use 'user1@host1'&#x000A;  session.use 'user2@host2'&#x000A;&#x000A;  # define servers in groups for more granular access&#x000A;  session.group :app do&#x000A;    session.use 'user@app1'&#x000A;    session.use 'user@app2'&#x000A;  end&#x000A;&#x000A;  # execute commands on all servers&#x000A;  session.exec &quot;uptime&quot;&#x000A;&#x000A;  # execute commands on a subset of servers&#x000A;  session.with(:app).exec &quot;hostname&quot;&#x000A;&#x000A;  # run the aggregated event loop&#x000A;  session.loop&#x000A;end</pre>
-            <p>
-            See <a
+            <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'net/ssh/multi'</span>&#x000A;&#x000A;<span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">session</span><span class="ruby-operator">|</span>&#x000A;  <span class="ruby-comment"># access servers via a gateway</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">via</span> <span class="ruby-string">'gateway'</span>, <span class="ruby-string">'gateway-user'</span>&#x000A;&#x000A;  <span class="ruby-comment"># define the servers we want to use</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user1@host1'</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user2@host2'</span>&#x000A;&#x000A;  <span class="ruby-comment"># define servers in groups for more granular access</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">group</span> :<span class="ruby-identifier">app</span> <span class="ruby-keyword">do</span>&#x000A;    <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user@app1'</span>&#x000A;    <span class="ruby-identifier">session</span>.<span class="ruby-identifier">use</span> <span class="ruby-string">'user@app2'</span>&#x000A;  <span class="ruby-keyword">end</span>&#x000A;&#x000A;  <span class="ruby-comment"># execute commands on all servers</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">exec</span> <span class="ruby-string">&quot;uptime&quot;</span>&#x000A;&#x000A;  <span class="ruby-comment"># execute commands on a subset of servers</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">with</span>(:<span class="ruby-identifier">app</span>).<span class="ruby-identifier">exec</span> <span class="ruby-string">&quot;hostname&quot;</span>&#x000A;&#x000A;  <span class="ruby-comment"># run the aggregated event loop</span>&#x000A;  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">loop</span>&#x000A;<span class="ruby-keyword">end</span></pre>
+            
+            <p>See <a
             href="../classes/Net/SSH/Multi/Session.html">Net::SSH::Multi::Session</a>
-            for more documentation.
-            </p>
-            <h2>REQUIREMENTS:</h2>
-            <ul>
-            <li>net-ssh (version 2)
+            for more documentation.</p>
             
-            </li>
-            <li>net-ssh-gateway
+            <h2 id="label-REQUIREMENTS%3A">REQUIREMENTS:</h2>
+            <ul><li>
+            <p>net-ssh (version 2)</p>
+            </li><li>
+            <p>net-ssh-gateway</p>
+            </li></ul>
             
-            </li>
-            </ul>
-            <p>
-            If you want to run the tests or use any of the Rake tasks, you&#8217;ll
-            need:
-            </p>
-            <ul>
-            <li>Echoe (for the Rakefile)
+            <p>If you want to run the tests or use any of the Rake tasks, you'll need:</p>
+            <ul><li>
+            <p>Echoe (for the Rakefile)</p>
+            </li><li>
+            <p>Mocha (for the tests)</p>
+            </li></ul>
             
-            </li>
-            <li>Mocha (for the tests)
+            <h2 id="label-INSTALL%3A">INSTALL:</h2>
+            <ul><li>
+            <p>gem install net-ssh-multi</p>
+            </li></ul>
             
-            </li>
-            </ul>
-            <h2>INSTALL:</h2>
-            <ul>
-            <li>gem install net-ssh-multi (might need sudo privileges)
+            <p>However, in order to be sure the code you're installing hasn't been
+            tampered with, it's recommended that you verify the <a
+            href="http://docs.rubygems.org/read/chapter/21">signiture</a>. To do this,
+            you need to add my public key as a trusted certificate (you only need to do
+            this once):</p>
             
-            </li>
-            </ul>
-            <h2>LICENSE:</h2>
-            <p>
-            (The MIT License)
-            </p>
-            <p>
-            Copyright &#169; 2008 Jamis Buck <jamis@37signals.com>
-            </p>
-            <p>
-            Permission is hereby granted, free of charge, to any person obtaining a
-            copy of this software and associated documentation files (the
-            &#8216;Software&#8217;), to deal in the Software without restriction,
-            including without limitation the rights to use, copy, modify, merge,
-            publish, distribute, sublicense, and/or sell copies of the Software, and to
-            permit persons to whom the Software is furnished to do so, subject to the
-            following conditions:
-            </p>
-            <p>
-            The above copyright notice and this permission notice shall be included in
-            all copies or substantial portions of the Software.
-            </p>
-            <p>
-            THE SOFTWARE IS PROVIDED &#8216;AS IS&#8217;, WITHOUT WARRANTY OF ANY KIND,
-            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-            NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-            DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-            OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-            USE OR OTHER DEALINGS IN THE SOFTWARE.
-            </p>
+            <pre># Add the public key as a trusted certificate&#x000A;# (You only need to do this once)&#x000A;$ curl -O https://raw.github.com/net-ssh/net-ssh/master/gem-public_cert.pem&#x000A;$ gem cert --add gem-public_cert.pem</pre>
+            
+            <p>Then, when install the gem, do so with high security:</p>
+            
+            <pre>$ gem install net-ssh-multi -P HighSecurity</pre>
+            
+            <p>If you don't add the public key, you'll see an error like "Couldn't verify
+            data signature". If you're still having trouble let me know and I'll give
+            you a hand.</p>
+            
+            <h2 id="label-LICENSE%3A">LICENSE:</h2>
+            
+            <p>(The MIT License)</p>
+            
+            <p>Copyright (c) 2008 Jamis Buck &lt;jamis@37signals.com&gt;</p>
+            
+            <p>Permission is hereby granted, free of charge, to any person obtaining a
+            copy of this software and associated documentation files (the 'Software'),
+            to deal in the Software without restriction, including without limitation
+            the rights to use, copy, modify, merge, publish, distribute, sublicense,
+            and/or sell copies of the Software, and to permit persons to whom the
+            Software is furnished to do so, subject to the following conditions:</p>
+            
+            <p>The above copyright notice and this permission notice shall be included in
+            all copies or substantial portions of the Software.</p>
+            
+            <p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+            FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+            DEALINGS IN THE SOFTWARE.</p>
           </div>
-          <div id='section'>
+          <div id='context'>
           </div>
         </div>
       </div>
       <div id='footer-push'></div>
     </div>
     <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+      <a target="docwin" href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
     </div>
   </body>
 </html>

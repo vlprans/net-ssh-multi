@@ -1,1 +1,15 @@
-Sun, 03 Apr 2011 16:39:39 -0400
+Wed, 06 Feb 2013 08:04:38 -0800
+README.rdoc	Wed, 06 Feb 2013 08:04:30 -0800
+lib/net/ssh/multi/channel.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/channel_proxy.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/dynamic_server.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/pending_connection.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/server.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/server_list.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/session.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/session_actions.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/subsession.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi/version.rb	Wed, 06 Feb 2013 08:04:22 -0800
+lib/net/ssh/multi.rb	Wed, 06 Feb 2013 08:04:22 -0800
+LICENSE.txt	Wed, 06 Feb 2013 08:04:30 -0800
+CHANGES.txt	Wed, 06 Feb 2013 08:04:30 -0800

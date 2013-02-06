@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Net::SSH::Multi::Subsession [Control multiple Net::SSH connections via a single interface.]</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <title>Net::SSH::Multi::Subsession</title>
+    <meta content='text/html; charset=US-ASCII' http-equiv='Content-Type'>
+    <link href='../../../../css/style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -26,45 +26,47 @@
     <div class='class' id='wrapper'>
       <div class='header'>
         <h1 class='name'>
-          <span class='type'>Class</span>
+          <span class='type'>class</span>
           Net::SSH::Multi::Subsession
         </h1>
         <ol class='paths'>
           <li>
-            <a href="../../../../files/lib/net/ssh/multi/subsession_rb.html">lib/net/ssh/multi/subsession.rb</a>
+            <a target="docwin" href="../../../../files/lib/net/ssh/multi/subsession_rb.html">lib/net/ssh/multi/subsession.rb</a>
           </li>
         </ol>
         <div class='parent'>
           Parent:
-          <strong>Object</strong>
+          <strong><a target="docwin" href="../Multi.html">Multi</a></strong>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <p>
-            A trivial class for representing a subset of servers. It is used internally
-            for restricting operations to a subset of all defined servers.
-            </p>
+            
+            <p>A trivial class for representing a subset of servers. It is used internally
+            for restricting operations to a subset of all defined servers.</p>
+            
             <pre>subsession = session.with(:app)&#x000A;subsession.exec(&quot;hostname&quot;)</pre>
           </div>
           <div id='method-list'>
             <h2>Methods</h2>
-            <h3>public class</h3>
+            <h3>Public Class</h3>
             <ol>
-              <li><a href="#M000078">new</a></li>
+              <li><a target="docwin" href="#method-c-new">new</a></li>
             </ol>
-            <h3>public instance</h3>
+            <h3>Public Instance</h3>
             <ol>
-              <li><a href="#M000080">first</a></li>
-              <li><a href="#M000079">slice</a></li>
+              <li><a target="docwin" href="#method-i-first">first</a></li>
+              <li><a target="docwin" href="#attribute-i-master">master</a></li>
+              <li><a target="docwin" href="#attribute-i-servers">servers</a></li>
+              <li><a target="docwin" href="#method-i-slice">slice</a></li>
             </ol>
           </div>
           <div id='context'>
             <div id='includes'>
               <h2>Included modules</h2>
               <ol>
-                <li><a href="SessionActions.html">SessionActions</a></li>
+                <li><a target="docwin" href="SessionActions.html">SessionActions</a></li>
               </ol>
             </div>
           </div>
@@ -74,86 +76,90 @@
               <div class='name-list'>
                 <table>
                   <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>master</td>
+                    <td class='context-item-name'>
+                      <a name='attribute-i-master'>master</a>
+                    </td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'>
                       
-                      The master session that spawned this subsession.
+                      <p>The master session that spawned this subsession.</p>
                     </td>
                   </tr>
                   <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>servers</td>
+                    <td class='context-item-name'>
+                      <a name='attribute-i-servers'>servers</a>
+                    </td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'>
                       
-                      The list of servers that this subsession can operate on.
+                      <p>The list of servers that this subsession can operate on.</p>
                     </td>
                   </tr>
                 </table>
               </div>
             </div>
             <div id='methods'>
-              <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000078'>
-                <a name='M000078'>      </a>
+              <h2>Public Class methods</h2>
+              <div class='method public-class' id='method-method-c-new'>
+                <a name='method-c-new'></a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(master, server_list)</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Create a new subsession of the given <tt>master</tt> session, that operates
-                  on the given <tt>server_list</tt>.
-                  </p>
+                  
+                  <p>Create a new subsession of the given <code>master</code> session, that
+                  operates on the given <code>server_list</code>.</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000078-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-c-new-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000078-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/subsession.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">server_list</span>)&#x000A;23:       <span class="ruby-ivar">@master</span>  = <span class="ruby-identifier">master</span>&#x000A;24:       <span class="ruby-ivar">@servers</span> = <span class="ruby-identifier">server_list</span>.<span class="ruby-identifier">uniq</span>&#x000A;25:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-c-new-source'><span class="ruby-comment"># File lib/net/ssh/multi/subsession.rb, line 22</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">server_list</span>)&#x000A;  <span class="ruby-ivar">@master</span>  = <span class="ruby-identifier">master</span>&#x000A;  <span class="ruby-ivar">@servers</span> = <span class="ruby-identifier">server_list</span>.<span class="ruby-identifier">uniq</span>&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000080'>
-                <a name='M000080'>      </a>
+              <h2>Public Instance methods</h2>
+              <div class='method public-instance' id='method-method-i-first'>
+                <a name='method-i-first'></a>
                 <div class='synopsis'>
                   <span class='name'>first</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Returns a new subsession that consists of only the first server in the
-                  server list of the current subsession. This is just convenience for
-                  slice(0):
-                  </p>
+                  
+                  <p>Returns a new subsession that consists of only the first server in the
+                  server list of the current subsession. This is just convenience for <a
+                  href="Subsession.html#method-i-slice">slice(0)</a>:</p>
+                  
                   <pre>s1 = subsession.first</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000080-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-first-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000080-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/subsession.rb, line 43</span>&#x000A;43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first</span>&#x000A;44:       <span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>)&#x000A;45:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-i-first-source'><span class="ruby-comment"># File lib/net/ssh/multi/subsession.rb, line 43</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">first</span>&#x000A;  <span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>)&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000079'>
-                <a name='M000079'>      </a>
+              <div class='method public-instance' id='method-method-i-slice'>
+                <a name='method-i-slice'></a>
                 <div class='synopsis'>
                   <span class='name'>slice</span>
                   <span class='arguments'>(*args)</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Works as Array#slice, but returns a new subsession consisting of the given
+                  
+                  <p>Works as Array#slice, but returns a new subsession consisting of the given
                   slice of servers in this subsession. The new subsession will have the same
-                  master session as this subsession does.
-                  </p>
+                  <a href="Subsession.html#attribute-i-master">master</a> session as this
+                  subsession does.</p>
+                  
                   <pre>s1 = subsession.slice(0)&#x000A;s2 = subsession.slice(3, -1)&#x000A;s3 = subsession.slice(1..4)</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000079-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-slice-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000079-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/subsession.rb, line 34</span>&#x000A;34:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;35:       <span class="ruby-constant">Subsession</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master</span>, <span class="ruby-constant">Array</span>(<span class="ruby-identifier">servers</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)))&#x000A;36:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-i-slice-source'><span class="ruby-comment"># File lib/net/ssh/multi/subsession.rb, line 34</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">slice</span>(*<span class="ruby-identifier">args</span>)&#x000A;  <span class="ruby-constant">Subsession</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master</span>, <span class="ruby-constant">Array</span>(<span class="ruby-identifier">servers</span>.<span class="ruby-identifier">slice</span>(*<span class="ruby-identifier">args</span>)))&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
             </div>
@@ -163,7 +169,7 @@
       <div id='footer-push'></div>
     </div>
     <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+      <a target="docwin" href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
     </div>
   </body>
 </html>

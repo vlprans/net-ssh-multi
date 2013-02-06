@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Net::SSH::Multi::DynamicServer [Control multiple Net::SSH connections via a single interface.]</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <title>Net::SSH::Multi::DynamicServer</title>
+    <meta content='text/html; charset=US-ASCII' http-equiv='Content-Type'>
+    <link href='../../../../css/style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -26,206 +26,210 @@
     <div class='class' id='wrapper'>
       <div class='header'>
         <h1 class='name'>
-          <span class='type'>Class</span>
+          <span class='type'>class</span>
           Net::SSH::Multi::DynamicServer
         </h1>
         <ol class='paths'>
           <li>
-            <a href="../../../../files/lib/net/ssh/multi/dynamic_server_rb.html">lib/net/ssh/multi/dynamic_server.rb</a>
+            <a target="docwin" href="../../../../files/lib/net/ssh/multi/dynamic_server_rb.html">lib/net/ssh/multi/dynamic_server.rb</a>
           </li>
         </ol>
         <div class='parent'>
           Parent:
-          <strong>Object</strong>
+          <strong><a target="docwin" href="../Multi.html">Multi</a></strong>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <p>
-            Represents a lazily evaluated collection of servers. This will usually be
+            
+            <p>Represents a lazily evaluated collection of servers. This will usually be
             created via <a
-            href="Session.html#M000069">Net::SSH::Multi::Session#use</a>(&amp;block),
+            href="Session.html#method-i-use">Net::SSH::Multi::Session#use</a>(&amp;block),
             and is useful for creating server definitions where the name or address of
-            the servers are not known until run-time.
-            </p>
+            the servers are not known until run-time.</p>
+            
             <pre>session.use { lookup_ip_address_of_server }</pre>
-            <p>
-            This prevents <tt>lookup_ip_address_of_server</tt> from being invoked
+            
+            <p>This prevents <code>lookup_ip_address_of_server</code> from being invoked
             unless the server is actually needed, at which point it is invoked and the
-            result cached.
-            </p>
-            <p>
-            The callback should return either <tt>nil</tt> (in which case no new
+            result cached.</p>
+            
+            <p>The callback should return either <code>nil</code> (in which case no new
             servers are instantiated), a String (representing a connection
             specification), an array of Strings, or an array of <a
-            href="Server.html">Net::SSH::Multi::Server</a> instances.
-            </p>
+            href="Server.html">Net::SSH::Multi::Server</a> instances.</p>
           </div>
           <div id='method-list'>
             <h2>Methods</h2>
-            <h3>public class</h3>
+            <h3>Public Class</h3>
             <ol>
-              <li><a href="#M000030">new</a></li>
+              <li><a target="docwin" href="#method-c-new">new</a></li>
             </ol>
-            <h3>public instance</h3>
+            <h3>Public Instance</h3>
             <ol>
-              <li><a href="#M000031">[]</a></li>
-              <li><a href="#M000032">[]=</a></li>
-              <li><a href="#M000033">each</a></li>
-              <li><a href="#M000034">evaluate!</a></li>
-              <li><a href="#M000035">to_ary</a></li>
+              <li><a target="docwin" href="#method-i-5B-5D">[]</a></li>
+              <li><a target="docwin" href="#method-i-5B-5D-3D">[]=</a></li>
+              <li><a target="docwin" href="#attribute-i-callback">callback</a></li>
+              <li><a target="docwin" href="#method-i-each">each</a></li>
+              <li><a target="docwin" href="#method-i-evaluate-21">evaluate!</a></li>
+              <li><a target="docwin" href="#attribute-i-master">master</a></li>
+              <li><a target="docwin" href="#attribute-i-options">options</a></li>
             </ol>
           </div>
+          <div id='context'>
+          </div>
           <div id='section'>
+            <div id='aliases-list'>
+              <h2>Public Instance Aliases</h2>
+              <div class='name-list'>
+                <table summary='Public Instance Aliases'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>to_ary</td>
+                    <td>-&gt;</td>
+                    <td class='context-item-value'><a target="docwin" href="#method-i-evaluate-21">evaluate!</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
             <div id='attribute-list'>
               <h2 class='section-bar'>Attributes</h2>
               <div class='name-list'>
                 <table>
                   <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>callback</td>
+                    <td class='context-item-name'>
+                      <a name='attribute-i-callback'>callback</a>
+                    </td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'>
                       
-                      The Proc object to call to evaluate the server(s)
+                      <p>The Proc object to call to evaluate the server(s)</p>
                     </td>
                   </tr>
                   <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>master</td>
+                    <td class='context-item-name'>
+                      <a name='attribute-i-master'>master</a>
+                    </td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'>
                       
-                      The <a href="Session.html">Net::SSH::Multi::Session</a> instance that owns
-                      this dynamic server record.
+                      <p>The <a href="Session.html">Net::SSH::Multi::Session</a> instance that owns
+                      this dynamic server record.</p>
                     </td>
                   </tr>
                   <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>options</td>
+                    <td class='context-item-name'>
+                      <a name='attribute-i-options'>options</a>
+                    </td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'>
                       
-                      The hash of options that will be used to initialize the server records.
+                      <p>The hash of options that will be used to initialize the server records.</p>
                     </td>
                   </tr>
                 </table>
               </div>
             </div>
             <div id='methods'>
-              <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000030'>
-                <a name='M000030'>      </a>
+              <h2>Public Class methods</h2>
+              <div class='method public-class' id='method-method-c-new'>
+                <a name='method-c-new'></a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(master, options, callback)</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Create a new <a href="DynamicServer.html">DynamicServer</a> record, owned
+                  
+                  <p>Create a new <a href="DynamicServer.html">DynamicServer</a> record, owned
                   by the given <a href="Session.html">Net::SSH::Multi::Session</a>
-                  <tt>master</tt>, with the given hash of <tt>options</tt>, and using the
-                  given Proc <tt>callback</tt> to lazily evaluate the actual server
-                  instances.
-                  </p>
+                  <code>master</code>, with the given hash of <code>options</code>, and using
+                  the given Proc <code>callback</code> to lazily evaluate the actual server
+                  instances.</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000030-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-c-new-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000030-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/dynamic_server.rb, line 32</span>&#x000A;32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">callback</span>)&#x000A;33:       <span class="ruby-ivar">@master</span>, <span class="ruby-ivar">@options</span>, <span class="ruby-ivar">@callback</span> = <span class="ruby-identifier">master</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">callback</span>&#x000A;34:       <span class="ruby-ivar">@servers</span> = <span class="ruby-keyword kw">nil</span>&#x000A;35:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-c-new-source'><span class="ruby-comment"># File lib/net/ssh/multi/dynamic_server.rb, line 32</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">callback</span>)&#x000A;  <span class="ruby-ivar">@master</span>, <span class="ruby-ivar">@options</span>, <span class="ruby-ivar">@callback</span> = <span class="ruby-identifier">master</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">callback</span>&#x000A;  <span class="ruby-ivar">@servers</span> = <span class="ruby-keyword">nil</span>&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000031'>
-                <a name='M000031'>      </a>
+              <h2>Public Instance methods</h2>
+              <div class='method public-instance' id='method-method-i-5B-5D'>
+                <a name='method-i-5B-5D'></a>
                 <div class='synopsis'>
                   <span class='name'>[]</span>
                   <span class='arguments'>(key)</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Returns the value for the given <tt>key</tt> in the :properties hash of the
-                  <tt>options</tt>. If no :properties hash exists in <tt>options</tt>, this
-                  returns <tt>nil</tt>.
-                  </p>
+                  
+                  <p>Returns the value for the given <code>key</code> in the :properties hash of
+                  the <code>options</code>. If no :properties hash exists in
+                  <code>options</code>, this returns <code>nil</code>.</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000031-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-5B-5D-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000031-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/dynamic_server.rb, line 39</span>&#x000A;39:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)&#x000A;40:       (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:properties</span>] <span class="ruby-operator">||=</span> {})[<span class="ruby-identifier">key</span>]&#x000A;41:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-i-5B-5D-source'><span class="ruby-comment"># File lib/net/ssh/multi/dynamic_server.rb, line 39</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)&#x000A;  (<span class="ruby-identifier">options</span>[<span class="ruby-value">:properties</span>] <span class="ruby-operator">||=</span> {})[<span class="ruby-identifier">key</span>]&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000032'>
-                <a name='M000032'>      </a>
+              <div class='method public-instance' id='method-method-i-5B-5D-3D'>
+                <a name='method-i-5B-5D-3D'></a>
                 <div class='synopsis'>
                   <span class='name'>[]=</span>
                   <span class='arguments'>(key, value)</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Sets the given key/value pair in the <tt>:properties</tt> key in the
+                  
+                  <p>Sets the given key/value pair in the <code>:properties</code> key in the
                   options hash. If the options hash has no :properties key, it will be
-                  created.
-                  </p>
+                  created.</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000032-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-5B-5D-3D-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000032-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/dynamic_server.rb, line 45</span>&#x000A;45:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)&#x000A;46:       (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:properties</span>] <span class="ruby-operator">||=</span> {})[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span>&#x000A;47:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-i-5B-5D-3D-source'><span class="ruby-comment"># File lib/net/ssh/multi/dynamic_server.rb, line 45</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)&#x000A;  (<span class="ruby-identifier">options</span>[<span class="ruby-value">:properties</span>] <span class="ruby-operator">||=</span> {})[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span>&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000033'>
-                <a name='M000033'>      </a>
+              <div class='method public-instance' id='method-method-i-each'>
+                <a name='method-i-each'></a>
                 <div class='synopsis'>
                   <span class='name'>each</span>
-                  <span class='arguments'>() {|server| ...}</span>
+                  <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Iterates over every instantiated server record in this dynamic server. If
+                  
+                  <p>Iterates over every instantiated server record in this dynamic server. If
                   the servers have not yet been instantiated, this does nothing (e.g., it
                   does <em>not</em> automatically invoke <a
-                  href="DynamicServer.html#M000034">evaluate!</a>).
-                  </p>
+                  href="DynamicServer.html#method-i-evaluate-21">evaluate!</a>).</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000033-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-each-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000033-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/dynamic_server.rb, line 52</span>&#x000A;52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>&#x000A;53:       (<span class="ruby-ivar">@servers</span> <span class="ruby-operator">||</span> []).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">server</span> }&#x000A;54:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='method-i-each-source'><span class="ruby-comment"># File lib/net/ssh/multi/dynamic_server.rb, line 52</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">each</span>&#x000A;  (<span class="ruby-ivar">@servers</span> <span class="ruby-operator">||</span> []).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">server</span> }&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000034'>
-                <a name='M000034'>      </a>
+              <div class='method public-instance' id='method-method-i-evaluate-21'>
+                <a name='method-i-evaluate-21'></a>
                 <div class='synopsis'>
                   <span class='name'>evaluate!</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
-                  <p>
-                  Evaluates the callback and instantiates the servers, memoizing the result.
-                  Subsequent calls to <a href="DynamicServer.html#M000034">evaluate!</a> will
-                  simply return the cached list of servers.
-                  </p>
+                  
+                  <p>Evaluates the callback and instantiates the servers, memoizing the result.
+                  Subsequent calls to <a
+                  href="DynamicServer.html#method-i-evaluate-21">evaluate!</a> will simply
+                  return the cached list of servers.</p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000034-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('method-i-evaluate-21-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000034-source'>    <span class="ruby-comment cmt"># File lib/net/ssh/multi/dynamic_server.rb, line 59</span>&#x000A;59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">evaluate!</span>&#x000A;60:       <span class="ruby-ivar">@servers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">callback</span>[<span class="ruby-identifier">options</span>]).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>&#x000A;61:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">server</span>&#x000A;62:           <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span><span class="ruby-operator">::</span><span class="ruby-constant">Server</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">server</span>, <span class="ruby-identifier">options</span>)&#x000A;63:           <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">server</span>&#x000A;64:           <span class="ruby-keyword kw">end</span>&#x000A;65:         <span class="ruby-keyword kw">end</span>&#x000A;66:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='method public-instance' id='method-M000035'>
-                <a name='M000035'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>to_ary</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Alias for <a href="DynamicServer.html#M000034">evaluate!</a>
-                  </p>
+                  <pre id='method-i-evaluate-21-source'><span class="ruby-comment"># File lib/net/ssh/multi/dynamic_server.rb, line 59</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">evaluate!</span>&#x000A;  <span class="ruby-ivar">@servers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">callback</span>[<span class="ruby-identifier">options</span>]).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>&#x000A;      <span class="ruby-keyword">case</span> <span class="ruby-identifier">server</span>&#x000A;      <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Multi</span><span class="ruby-operator">::</span><span class="ruby-constant">Server</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master</span>, <span class="ruby-identifier">server</span>, <span class="ruby-identifier">options</span>)&#x000A;      <span class="ruby-keyword">else</span> <span class="ruby-identifier">server</span>&#x000A;      <span class="ruby-keyword">end</span>&#x000A;    <span class="ruby-keyword">end</span>&#x000A;<span class="ruby-keyword">end</span></pre>
                 </div>
               </div>
             </div>
@@ -235,7 +239,7 @@
       <div id='footer-push'></div>
     </div>
     <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+      <a target="docwin" href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
     </div>
   </body>
 </html>
