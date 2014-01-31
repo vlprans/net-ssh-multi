@@ -127,7 +127,7 @@ module Net; module SSH; module Multi
 
     # The default Net::SSH::Gateway instance to use to connect to the servers.
     # If +nil+, no default gateway will be used.
-    attr_reader :default_gateway
+    attr_reader :default_gateway_opts
 
     # The hash of group definitions, mapping each group name to a corresponding
     # Net::SSH::Multi::ServerList.
@@ -241,8 +241,12 @@ module Net; module SSH; module Multi
     # You may override the default gateway on a per-server basis by passing the
     # :via key to the #use method; see #use for details.
     def via(host, user, options={})
-      @default_gateway = Net::SSH::Gateway.new(host, user, options)
+      @default_gateway_opts = [host, user, options]
       self
+    end
+
+    def default_gateway
+      Net::SSH::Gateway.new(*default_gateway_opts)
     end
 
     # Defines a new server definition, to be managed by this session. The
